@@ -31,9 +31,10 @@ targetCompatibility = 1.8
 dependencies {
 	compile files("${System.properties['java.home']}/../lib/tools.jar")
     compile("org.springframework.boot:spring-boot-starter-web") 
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
     testCompile("org.springframework.boot:spring-boot-starter-test")
     compile group: 'org.boofcv', name: 'all', version: '0.21'
-    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    
 }
 
 task wrapper(type: Wrapper) {

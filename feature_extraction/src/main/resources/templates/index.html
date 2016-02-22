@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title>HELLO</title>
+</head>
+<body>
+<p th:text="${message}"></p>
+<h2>Do edge detection on an image"</h2>
+
+<h2>Upload the image:</h2>
+	<form:form method="POST" commandName="file"  enctype="multipart/form-data">
+	Upload your file please:
+	<input type="file" name="file" />
+	<input type="submit" value="upload" />
+	<form:errors path="file" cssStyle="color: #ff0000;" />
+	</form:form>
+
+
+</body>
+</html>

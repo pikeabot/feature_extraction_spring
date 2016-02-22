@@ -27,9 +27,9 @@ import java.util.List;
  *
  * @author jchang
  */
-public class edgeDetection {
-    public static void main( String args[] ) {
-        BufferedImage image = UtilImageIO.loadImage(UtilIO.pathExample("C:\\Users\\jchang\\Pictures\\images.jpg"));
+public class EdgeDetection {
+    public static BufferedImage runEdgeDetection(String imgPath) {
+        BufferedImage image = UtilImageIO.loadImage(UtilIO.pathExample(imgPath));
 
         ImageUInt8 gray = ConvertBufferedImage.convertFrom(image,(ImageUInt8)null);
         ImageUInt8 edgeImage = gray.createSameShape();
@@ -51,6 +51,7 @@ public class edgeDetection {
 
         // display the results
         BufferedImage visualBinary = VisualizeBinaryData.renderBinary(edgeImage, false, null);
+        /*
         BufferedImage visualCannyContour = VisualizeBinaryData.renderContours(edgeContours,null,
                         gray.width,gray.height,null);
         BufferedImage visualEdgeContour = new BufferedImage(gray.width, gray.height,BufferedImage.TYPE_INT_RGB);
@@ -61,5 +62,7 @@ public class edgeDetection {
         panel.addImage(visualCannyContour, "Canny Trace Graph");
         panel.addImage(visualEdgeContour,"Contour from Canny Binary");
         ShowImages.showWindow(panel,"Canny Edge", true);
+        */
+        return visualBinary;
     }
 }
