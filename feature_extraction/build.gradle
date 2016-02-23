@@ -13,7 +13,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
-apply plugin: 'war'
+apply plugin: 'docker'
 
 jar {
     baseName = 'feature-extraction'
@@ -39,4 +39,16 @@ dependencies {
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.11'
+}
+
+task buildDocker(type: Docker, dependsOn: build) {
+  push = true
+  applicationName = jar.baseName
+  dockerfile = file('src/main/docker/Dockerfile')
+  doFirst {
+    copy {
+      from jar
+      into stageDir
+    }
+  }
 }
