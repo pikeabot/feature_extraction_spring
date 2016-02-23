@@ -51,18 +51,7 @@ public class EdgeDetection {
 
         // display the results
         BufferedImage visualBinary = VisualizeBinaryData.renderBinary(edgeImage, false, null);
-        /*
-        BufferedImage visualCannyContour = VisualizeBinaryData.renderContours(edgeContours,null,
-                        gray.width,gray.height,null);
-        BufferedImage visualEdgeContour = new BufferedImage(gray.width, gray.height,BufferedImage.TYPE_INT_RGB);
-        VisualizeBinaryData.renderExternal(contours, (int[]) null, visualEdgeContour);
 
-        ListDisplayPanel panel = new ListDisplayPanel();
-        panel.addImage(visualBinary,"Binary Edges from Canny");
-        panel.addImage(visualCannyContour, "Canny Trace Graph");
-        panel.addImage(visualEdgeContour,"Contour from Canny Binary");
-        ShowImages.showWindow(panel,"Canny Edge", true);
-        */
         return visualBinary;
     }
 }

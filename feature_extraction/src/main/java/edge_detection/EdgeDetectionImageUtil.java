@@ -1,5 +1,6 @@
 package edge_detection;
 import javax.imageio.ImageIO;  
+
 import java.awt.image.BufferedImage;  
 import java.io.*;  
 import java.awt.*;  
@@ -9,12 +10,8 @@ public class EdgeDetectionImageUtil {
     private static int rows = 2;   //we assume the no. of rows and cols are known and each chunk has equal width and height  
     private static int cols = 2;  
     
-	    public static void chunk(String imgPath) throws IOException {  
+	    public static void chunk(BufferedImage image) throws IOException {  
 	  
-	        File file = new File(imgPath); // I have bear.jpg in my working directory  
-	        FileInputStream fis = new FileInputStream(file);  
-	        BufferedImage image = ImageIO.read(fis); //reading the image file  
-
 	        int chunks = rows * cols;  
 	  
 	        int chunkWidth = image.getWidth() / cols; // determines the chunk width and height  
@@ -36,7 +33,7 @@ public class EdgeDetectionImageUtil {
 	  
 	        //writing mini images into image files  
 	        for (int i = 0; i < imgs.length; i++) {  
-	            ImageIO.write(imgs[i], "jpg", new File("img" + i + ".jpg"));  
+	            ImageIO.write(imgs[i], "jpg", new File("tmp\\img" + i + ".jpg"));  
 	        }  
 	        System.out.println("Mini images created");    
 	}
@@ -47,19 +44,8 @@ public class EdgeDetectionImageUtil {
         int chunks = rows * cols;  
   
         int chunkWidth, chunkHeight;  
-        int type;  /*
-        //fetching image files  
-        File[] imgFiles = new File[chunks];  
-        for (int i = 0; i < chunks; i++) {  
-            imgFiles[i] = new File(imgPath + "img" + i + ".jpg");  
-        }  
-  
-       //creating a bufferd image array from image files  
-        BufferedImage[] buffImages = new BufferedImage[chunks];  
-        for (int i = 0; i < chunks; i++) {  
-            buffImages[i] = ImageIO.read(imgFiles[i]);  
-        }  
-        */
+        int type; 
+        
         type = buffImages[0].getType();  
         chunkWidth = buffImages[0].getWidth();  
         chunkHeight = buffImages[0].getHeight();  
@@ -75,6 +61,6 @@ public class EdgeDetectionImageUtil {
             }  
         }  
         System.out.println("Image concatenated.....");  
-        ImageIO.write(finalImg, "jpeg", new File("finalImg.jpg"));
+        ImageIO.write(finalImg, "jpeg", new File(System.getProperty("user.dir") +"\\tmp\\finalImg.jpg"));
 	}
 }
