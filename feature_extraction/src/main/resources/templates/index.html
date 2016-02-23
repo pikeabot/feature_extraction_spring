@@ -9,12 +9,12 @@
 <h2>Do edge detection on an image"</h2>
 
 <h2>Upload the image:</h2>
-	<form:form method="POST" commandName="file"  enctype="multipart/form-data">
-	Upload your file please:
-	<input type="file" name="file" />
-	<input type="submit" value="upload" />
+	<form method="POST" th:action="@{/upload}" enctype="multipart/form-data">
+	Upload your image please:
+	<input type="file" name="file" id="file"/>
+	<input type="submit" value="upload" name="upload" id="upload" />
 	<form:errors path="file" cssStyle="color: #ff0000;" />
-	</form:form>
+	</form>
 
 
 </body>
