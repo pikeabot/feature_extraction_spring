@@ -41,8 +41,6 @@ public class EdgeDetectionImageUtil {
 	
 	public static void knit(BufferedImage[] buffImages) throws IOException {  
 	    
-        int chunks = rows * cols;  
-  
         int chunkWidth, chunkHeight;  
         int type; 
         
