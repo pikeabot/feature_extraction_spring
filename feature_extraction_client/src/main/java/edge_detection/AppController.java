@@ -2,11 +2,15 @@ package edge_detection;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
 
-import edge_detection.EdgeDetection;
 import edge_detection.EdgeDetectionImageUtil.*;
 
 import org.springframework.boot.bind.RelaxedPropertyResolver;
@@ -33,7 +37,9 @@ public class AppController {
     }
 
     @RequestMapping(value="/upload", method=RequestMethod.POST)
-    public @ResponseBody String handleFileUpload(@RequestParam("file") MultipartFile file, Model model){
+    public @ResponseBody String handleFileUpload(@RequestParam("file") MultipartFile file, Model model) throws IOException{
+	     Socket soc;
+	     soc=new Socket("localhost",4000);
         if (!file.isEmpty()) {
             try {
             	
@@ -48,9 +54,33 @@ public class AppController {
         		System.out.println("getting image data");
         		//Split the original image into subimages and save to tmp dir
         		EdgeDetectionImageUtil.chunk(image);
-        		//Run edge detection on all of the sub images
         		for (int i=0; i<chunks; i++) {
-        			buffImgs[i] = EdgeDetection.runEdgeDetection(System.getProperty("user.dir") + "\\tmp\\img" + i + ".jpg");
+
+	        	     BufferedImage img = null;
+	        	     
+	        	     System.out.println("Client is running. ");
+					 System.out.println("Reading image from disk. ");
+					 img = ImageIO.read(new File(System.getProperty("user.dir") + "\\tmp\\img" + i + ".jpg"));
+					 ByteArrayOutputStream baos = new ByteArrayOutputStream();
+					 
+					 ImageIO.write(img, "jpg", baos);
+					 baos.flush();
+					 
+					 byte[] bytes = baos.toByteArray();
+					 baos.close();
+					 
+					 System.out.println("Sending image to server. ");
+					 
+					 OutputStream out = soc.getOutputStream(); 
+					 DataOutputStream dos = new DataOutputStream(out);
+					 
+					 dos.writeInt(bytes.length);
+					 dos.write(bytes, 0, bytes.length);
+					 
+					 System.out.println("Image sent to server. ");
+				
+				     dos.close();
+				     out.close();  
         		}
         		//Combine the images back into one image
         		EdgeDetectionImageUtil.knit(buffImgs);
@@ -59,11 +89,14 @@ public class AppController {
         		System.out.println(elapsedTime);
         		return "Edge detection complete in " + Long.toString(elapsedTime);
             } catch (Exception e) {
+            	soc.close();
                 return "Failed to upload => " + e.getMessage();
             }
         } else {
+        	soc.close();
             return "Upload failed because the file was empty.";
         }
+        
     }
  	
 }
