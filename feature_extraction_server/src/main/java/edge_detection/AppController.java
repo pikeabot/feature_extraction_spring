@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.imageio.ImageIO;  
 
-@Controller
+@RestController
 public class AppController {
 
     @RequestMapping(value="/runEdgeDetection", method=RequestMethod.GET, produces = "image/jpg")
