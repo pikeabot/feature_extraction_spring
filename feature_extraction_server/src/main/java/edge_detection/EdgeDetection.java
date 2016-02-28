@@ -28,8 +28,8 @@ import java.util.List;
  * @author jchang
  */
 public class EdgeDetection {
-    public static BufferedImage runEdgeDetection(String imgPath) {
-        BufferedImage image = UtilImageIO.loadImage(UtilIO.pathExample(imgPath));
+    public static BufferedImage runEdgeDetection(BufferedImage image) {
+        //BufferedImage image = UtilImageIO.loadImage(UtilIO.pathExample(imgPath));
 
         ImageUInt8 gray = ConvertBufferedImage.convertFrom(image,(ImageUInt8)null);
         ImageUInt8 edgeImage = gray.createSameShape();
