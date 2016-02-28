@@ -49,8 +49,10 @@ public class AppController {
         		for (int i=0; i<chunks; i++) {
         			 URL baseUrl = new URL("http://localhost");
 	        	     BufferedImage img = null; 
-	        	     t[i] = new Thread(new ClientThreadHandler(baseUrl, i));
+	        	     ClientThreadHandler newClient = new ClientThreadHandler(baseUrl, i);
+	        	     t[i] = new Thread(newClient);
 	        	     t[i].start();
+	        	     buffImgs[i] = newClient.getImage();
         		}
         		//Combine the images back into one image
         		EdgeDetectionImageUtil.knit(buffImgs);

@@ -62,8 +62,13 @@ public class EdgeDetectionImageUtil {
         ImageIO.write(finalImg, "jpeg", new File(System.getProperty("user.dir") +"\\tmp\\finalImg.jpg"));
 	}
 	
+	public static BufferedImage byteToBufferedImage(byte[] imgBytes) throws IOException{
+		InputStream in = new ByteArrayInputStream(imgBytes);
+		BufferedImage bImageFromConvert = ImageIO.read(in);
+		return bImageFromConvert;
+	}
 	
-	public byte[] bufferedImageToByte(BufferedImage originalImage) throws IOException {
+	public static byte[] bufferedImageToByte(BufferedImage originalImage) throws IOException {
 
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		ImageIO.write( originalImage, "jpg", baos );
