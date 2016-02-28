@@ -33,7 +33,7 @@ public class EdgeDetectionImageUtil {
 	  
 	        //writing mini images into image files  
 	        for (int i = 0; i < imgs.length; i++) {  
-	            ImageIO.write(imgs[i], "jpg", new File("tmp\\img" + i + ".jpg"));  
+	            ImageIO.write(imgs[i], "jpg", new File("tmp/img" + i + ".jpg"));  
 	        }  
 	        System.out.println("Mini images created");    
 	}
@@ -59,7 +59,7 @@ public class EdgeDetectionImageUtil {
             }  
         }  
         System.out.println("Image concatenated.....");  
-        ImageIO.write(finalImg, "jpeg", new File(System.getProperty("user.dir") +"\\tmp\\finalImg.jpg"));
+        ImageIO.write(finalImg, "jpeg", new File(System.getProperty("user.dir") +"/tmp/finalImg.jpg"));
 	}
 	
 	public static BufferedImage byteToBufferedImage(byte[] imgBytes) throws IOException{
