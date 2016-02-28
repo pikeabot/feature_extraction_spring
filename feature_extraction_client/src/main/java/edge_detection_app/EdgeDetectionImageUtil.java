@@ -61,4 +61,15 @@ public class EdgeDetectionImageUtil {
         System.out.println("Image concatenated.....");  
         ImageIO.write(finalImg, "jpeg", new File(System.getProperty("user.dir") +"\\tmp\\finalImg.jpg"));
 	}
+	
+	
+	public byte[] bufferedImageToByte(BufferedImage originalImage) throws IOException {
+
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		ImageIO.write( originalImage, "jpg", baos );
+		baos.flush();
+		byte[] imageInByte = baos.toByteArray();
+		baos.close();
+		return imageInByte;
+	}
 }
