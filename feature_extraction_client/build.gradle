@@ -10,11 +10,13 @@ buildscript {
     }
 }
 
+group = 'jrchang'
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
-//apply plugin: 'docker'
+apply plugin: 'docker'
 
 jar {
     baseName = 'feature-extraction-client'
