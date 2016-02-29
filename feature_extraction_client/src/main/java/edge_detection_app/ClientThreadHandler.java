@@ -29,11 +29,11 @@ public class ClientThreadHandler implements Runnable{
     public void run() {
         try {
         	final String uri = baseUrl + ":808" + Integer.toString(i) + "/runEdgeDetection";
-        	
-        	BufferedImage img = ImageIO.read(new File(System.getProperty("user.dir") + "\\tmp\\img" + i + ".jpg"));
-             
+        	BufferedImage img = ImageIO.read(new File(System.getProperty("user.dir") + "/tmp/img" + i + ".jpg"));
+
             RestTemplate restTemplate = new RestTemplate();
-            byte[] result = restTemplate.getForObject(uri, byte[].class, img);
+            byte[] result = restTemplate.postForObject(uri, byte[].class, img);
+            System.out.println("Sending image");
             processedImg = EdgeDetectionImageUtil.byteToBufferedImage(result);
             
         } catch (IOException ex) {

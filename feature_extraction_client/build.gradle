@@ -17,6 +17,9 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply plugin: 'docker'
+apply plugin: 'application'
+
+mainClassName = 'edge_detection_app.Application'
 
 jar {
     baseName = 'feature-extraction-client'
