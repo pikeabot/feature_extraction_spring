@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,8 +21,8 @@ import javax.imageio.ImageIO;
 @RestController
 public class AppController {
 
-    @RequestMapping(value="/runEdgeDetection", method=RequestMethod.GET, produces = "image/jpg")
-    public ResponseEntity<byte[]>  processImage(@RequestBody byte[] byteChunk) throws IOException{
+    @RequestMapping(value="/runEdgeDetection", method=RequestMethod.POST, produces = "image/jpg")
+    public @ResponseBody ResponseEntity<byte[]>  processImage(@RequestBody byte[] byteChunk) throws IOException{
     	try {
     		//read in image
     		InputStream in = new ByteArrayInputStream(byteChunk);
