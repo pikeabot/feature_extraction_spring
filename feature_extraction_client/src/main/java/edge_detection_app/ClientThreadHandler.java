@@ -32,7 +32,7 @@ public class ClientThreadHandler implements Runnable{
         	BufferedImage img = ImageIO.read(new File(System.getProperty("user.dir") + "/tmp/img" + i + ".jpg"));
 
             RestTemplate restTemplate = new RestTemplate();
-            byte[] result = restTemplate.postForObject(uri, byte[].class, img);
+            byte[] result = restTemplate.postForObject(uri, img, byte[].class );
             System.out.println("Sending image");
             processedImg = EdgeDetectionImageUtil.byteToBufferedImage(result);
             
