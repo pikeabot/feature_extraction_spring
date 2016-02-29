@@ -2,7 +2,7 @@
 
 = Feature Extraction
 
-Test project to run feature extraction in a distributed manner. Docker containers using Java/Spring-boot will be created to run Canny edge detection. Main program will split the image into x number of images, pass them to the Docker containers for processing and recombine them into a final image. 
+Test project as an exercise to learn and practice RESTful web services using Spring-boot, threading and some basic distributed computing. App performs feature extraction on an image by splitting the image into x number of images and then passing them to Docker containers for processing. Probably not the smartest implementation but.... the Docker Containers run a Spring-boot REST Controller which takes an image chunk and then runs edge detection on the image. It then sends the processed image back to the main application which recombines all of the processed image chunks into a final image. 
 
 Built using Gradle
 
@@ -10,7 +10,7 @@ Built using Gradle
 Using BoofCV
 
 == Image splitting and reconstruction
-(Heavily) based off of code from here
+Heavily based off of code from here
 http://kalanir.blogspot.com/2010/02/how-to-split-image-into-chunks-java.html
 
 http://kalanir.blogspot.com/2010/02/how-to-merge-multiple-images-into-one.html
@@ -18,6 +18,5 @@ http://kalanir.blogspot.com/2010/02/how-to-merge-multiple-images-into-one.html
 == Run Server via Docker
 Based off of the spring.io guide:
 https://spring.io/guides/gs/spring-boot-docker/
-
 
 
