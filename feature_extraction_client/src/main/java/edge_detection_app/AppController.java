@@ -46,7 +46,7 @@ public class AppController {
         		//Split the original image into subimages and save to tmp dir
         		EdgeDetectionImageUtil.chunk(image);
             	Thread[] t = new Thread[chunks];
-        		for (int i=1; i<chunks+1; i++) {
+        		for (int i=1; i<5; i++) {
         			 URL baseUrl = new URL("http://localhost");
 	        	     BufferedImage img = null; 
 	        	     ClientThreadHandler newClient = new ClientThreadHandler(baseUrl, i);
